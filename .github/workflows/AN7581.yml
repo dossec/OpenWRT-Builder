@@ -91,8 +91,8 @@ jobs:
 
       - name: Initialization Values
         run: |
-          export WRT_DATE=$(TZ=UTC-8 date +"%y.%m.%d_%H.%M.%S")
-          export WRT_CI=$(basename $GITHUB_WORKSPACE)
+          echo "WRT_DATE=$(TZ=UTC-8 date +"%y.%m.%d-%H.%M.%S")" >> $GITHUB_ENV
+          echo "WRT_CI=$(basename $GITHUB_WORKSPACE)" >> $GITHUB_ENV
 
       - name: Clone source code
         working-directory: /workdir
@@ -176,7 +176,7 @@ jobs:
               extension="${filename##*.}"
               name="${filename%.*}"
               # 添加编译时间前缀
-              new_name="${WRT_DATE}_${filename}"
+              new_name="${{ env.WRT_DATE }}_${filename}"
               mv "$file" "$new_name"
             fi
           done
