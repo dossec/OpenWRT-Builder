@@ -42,10 +42,10 @@ jobs:
         with:
           gh_token: ${{secrets.GITHUB_TOKEN}}
           delete_releases: true
-          releases_keep_latest: 5
+          releases_keep_latest: 10
           delete_tags: true
-          delete_workflows: true
-          workflows_keep_day: 5
+          delete_workflows: false
+          workflows_keep_day: 10
   build:
     runs-on: ubuntu-22.04
     steps:
@@ -91,7 +91,7 @@ jobs:
 
       - name: Initialization Values
         run: |
-          echo "WRT_DATE=$(TZ=UTC-8 date +"%y.%m.%d-%H.%M.%S")" >> $GITHUB_ENV
+          echo "WRT_DATE=$(TZ=UTC-8 date +"%Y%m%d-%H%M%S")" >> $GITHUB_ENV
           echo "WRT_CI=$(basename $GITHUB_WORKSPACE)" >> $GITHUB_ENV
 
       - name: Clone source code
