@@ -176,7 +176,7 @@ jobs:
               extension="${filename##*.}"
               name="${filename%.*}"
               # 添加编译时间前缀
-              new_name="${{ env.FILE_DATE }}_${filename}"
+              new_name="${WRT_DATE}_${filename}"
               mv "$file" "$new_name"
             fi
           done
